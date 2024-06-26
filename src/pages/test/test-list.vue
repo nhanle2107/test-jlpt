@@ -12,6 +12,7 @@ interface Data {
   pass_score: number
 }
 
+const route = useRoute()
 const dataList = ref<Data[]>([])
 const headers = [
   { title: 'ID', key: 'id' },
@@ -24,14 +25,17 @@ const headers = [
 ]
 
 onMounted(() => {
-  getList()
+  getList(route.params.level)
 })
 
-const getList = async () => {
-  const currentURL = window.location.pathname
-  if (/^\/test\/n[1-5]$/g.test(currentURL)) {
-    const level = Number(currentURL.split('/n')[1])
-    await TestServices.getAll(level)
+onBeforeRouteUpdate((to, _) => {
+  getList(to.params.level)
+})
+
+const getList = async (level: any) => {
+  level = level.toString()
+  if (/^[1-5]$/g.test(level)) {
+    await TestServices.getAll(Number(level))
       .then(response => {
         console.log("get list", response.data)
         dataList.value = response.data["data"]

@@ -1,5 +1,3 @@
-import component from 'vue-prism-component';
-
 export const routes = [
   { path: '/', redirect: '/dashboard' },
   {
@@ -41,7 +39,7 @@ export const routes = [
     component: () => import('@/layouts/default.vue'),
     children: [
       {
-        path: 'n4',
+        path: 'n:level',
         component: () => import('@/pages/test/test-list.vue'),
       },
       {
