@@ -37,7 +37,6 @@ const getList = async (level: any) => {
   if (/^[1-5]$/g.test(level)) {
     await TestServices.getAll(Number(level))
       .then(response => {
-        console.log("get list", response.data)
         dataList.value = response.data["data"]
           .sort((a: Data, b: Data) => {
             const titleA = Number(a.title.split(' ')[1])
