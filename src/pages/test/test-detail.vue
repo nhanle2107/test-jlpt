@@ -322,7 +322,7 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
                   <VBtn 
                     variant="outlined"
                     rounded
-                    style="margin-left: 3rem; margin-top: 1rem;"
+                    style="margin-block-start: 1rem; margin-inline-start: 3rem;"
                     :onclick="() => subQuestion.showExplain = !subQuestion.showExplain"
                   >
                     {{ subQuestion.showExplain ? 'Hide explaination' : 'Show explaination' }}
@@ -345,74 +345,7 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
                 </VCardItem>
               </VCard>
             </div>
-
-            <!-- <div v-if="navigationTab == 2">
-              <audio controls v-if="part.audioUrl">
-                <source :src="part.audioUrl" type="audio/mpeg">
-              </audio>
-              <VCard
-                v-for="(mondai, mIndex) in part.content"
-                class="mondai"
-              >
-                <div v-for="(question, qIndex) in mondai.questions">
-                  <VCardItem>
-                    <div v-html="question.title"></div>
-                  </VCardItem>
-                  <audio controls v-if="question.general.audio">
-                    <source :src="question.general.audio" type="audio/mpeg">
-                  </audio>
-                  <VCardItem v-if="question.general.txt_read.ja">
-                    <div v-html="question.general.txt_read.ja"></div>
-                  </VCardItem>
-
-                  <VCardItem
-                    v-for="(subQuestion, index) in question.sub_question"
-                    class="sub-question"
-                  >
-                    <VCardText class="question">
-                      <VChip
-                        color="primary"
-                        variant="tonal"
-                        size="small"
-                      >
-                        {{ `${mIndex + 1}.${qIndex + 1}.${index + 1}` }}
-                      </VChip>
-                      <div 
-                        class="question-text" 
-                        v-html="`<p>${subQuestion.question
-                          .replaceAll('*', '★')
-                          .replaceAll('＊', '★')
-                          .replaceAll('{', '<strong>')
-                          .replaceAll('}', '</strong>')}</p>`"
-                      ></div>
-                    </VCardText>
-                    <VRadioGroup class="answers">
-                      <VRadio
-                        v-for="(answer, index) in subQuestion.answers"
-                        :label="answer"
-                        :value="index"
-                      ></VRadio>
-                    </VRadioGroup>
-                    <VCardText v-show="false" class="explain">
-                      <VChip
-                        color="success"
-                        variant="tonal"
-                        size="small"
-                      >
-                        {{ `Explain:` }}
-                      </VChip>
-                      <div 
-                        class="explain-text" 
-                        v-html="`<p>${subQuestion.explain.vi
-                          .replaceAll('{', '<strong>')
-                          .replaceAll('}', '</strong>')}</p>`"
-                      ></div>
-                    </VCardText>
-                  </VCardItem>
-                </div>
-              </VCard>
-            </div> -->
-
+            
             <VCardText>
               <VBtn 
                 style="align-items: center;"
@@ -437,11 +370,11 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
       >
         <VCard 
           v-for="(mondai, mIdx) in part"
-          style="margin: 1rem; padding: 0.5rem;"
+          style=" padding: 0.5rem; margin: 1rem;"
         >
           <div
             v-for="(ans, index) in mondai"
-            style="margin: 0.5rem; display: inline-flex;"  
+            style="display: inline-flex; margin: 0.5rem;"  
           >
             <div>
               <span>{{ `${mIdx + 1}.${index + 1}` }}</span>
@@ -449,7 +382,7 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
                 :color="isSubmit ? ( ans.is_correct ? 'success' : 'error' ) : 'primary'"
                 :variant="isSubmit ? ( ans.is_correct ? 'tonal' : 'elevated' ) : 'tonal'"
                 size="small"
-                style="margin-left: 0.5rem;"
+                style="margin-inline-start: 0.5rem;"
               >
                 {{  ans.answer !== null ? `${ans.answer + 1}` : ` ` }}
               </VChip>
@@ -465,50 +398,61 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
 .part {
   font-size: x-large;
 }
+
 .title {
   display: inline-block;
 }
+
 .mondai {
   margin: 1rem;
   font-weight: bold;
 }
+
 .mondai img {
   display: block;
-  width: 50%;
+  inline-size: 50%;
 }
+
 .sub-question {
-  margin-left: 2rem;
+  margin-inline-start: 2rem;
 }
+
 .question * {
   display: inline;
 }
+
 .text-capitalize {
-  width: 3rem;
   padding: auto;
+  inline-size: 3rem;
 }
+
 .question-text {
-  margin-left: 1rem;
+  margin-inline-start: 1rem;
 }
+
 .answers {
-  margin-left: 4rem;
+  margin-inline-start: 4rem;
 }
+
 .review {
+  z-index: 10;
   display: contents;
   padding:40px;
+  background: #eee;
+  margin-block-end: 0.5rem;
   text-align: center;
-  z-index: 10;
-  background: #eeeeee;
-  margin-bottom: 0.5rem;
 }
+
 .explain-text {
-  margin-left: 2rem;
-  font-size: large;
   color: black;
+  font-size: large;
+  margin-inline-start: 2rem;
 }
+
 audio {
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  width: calc(100% - 2rem);
+  inline-size: calc(100% - 2rem);
+  margin-block-start: 1rem;
+  margin-inline: 1rem;
+  margin-inline-end: 1rem;
 }
 </style>
