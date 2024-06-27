@@ -395,6 +395,28 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
 </template>
 
 <style>
+@media only screen and (max-width: 699px) {
+  .mondai img {
+    display: block;
+    inline-size: 80%;
+  }
+
+  .sub-question {
+    margin-inline-start: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .mondai img {
+    display: block;
+    inline-size: 50%;
+  }
+
+  .sub-question {
+    margin-inline-start: 2rem;
+  }
+}
+
 .part {
   font-size: x-large;
 }
@@ -406,15 +428,6 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
 .mondai {
   margin: 1rem;
   font-weight: bold;
-}
-
-.mondai img {
-  display: block;
-  inline-size: 50%;
-}
-
-.sub-question {
-  margin-inline-start: 2rem;
 }
 
 .question * {
