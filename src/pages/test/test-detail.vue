@@ -493,10 +493,8 @@ const checkAnswer = (part: number, mondai: number, question: number, answer: num
   margin-left: 4rem;
 }
 .review {
-  position: fixed;
-  top:0;
+  display: contents;
   padding:40px;
-  background: lightblue;
   text-align: center;
   z-index: 10;
   background: #eeeeee;
