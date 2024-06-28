@@ -83,6 +83,22 @@ const isSubmit = ref<boolean>(false)
 
 const reviewBgColor = ['success', 'warning', 'primary']
 
+onBeforeMount(() => {
+  window.addEventListener('beforeunload', (e) => {
+    e.preventDefault()
+    console.log("refresh")
+    return ""
+  })
+})
+
+onBeforeRouteLeave((_to, _from, next) => {
+  const msg = 'Do you confirm to leave?'
+  if (!window.confirm(msg)) {
+    return
+  }
+  next()
+})
+
 onMounted(() => {
   getTestData()
 })
